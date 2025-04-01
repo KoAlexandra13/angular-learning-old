@@ -1,0 +1,38 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 230px;
+  margin-bottom: 16px;
+}
+  
+input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+  
+button {
+  padding: 8px;
+  background: rgb(131, 159, 252);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#price, #rating {
+  display: flex;
+}
+
+.range_input {
+  width: 100px;
+}
+
+.bold_label {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+
+  

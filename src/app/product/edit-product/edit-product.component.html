@@ -1,0 +1,45 @@
+<div class="edit_product_container">
+    <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+        <h1 class="form_title">Edit Product Info:</h1>
+
+        <div class="form_item">
+            <label for="image">Image URL:</label>
+            <input id="image" formControlName="image" placeholder="https://"/>
+        </div>
+    
+        <div class="form_item">
+            <label for="title">Title:</label>
+            <input id="title" formControlName="title"/>
+        </div>
+    
+        <div class="form_item">
+            <label for="price">Price:</label>
+            <input id="price" formControlName="price" type="number" [ngClass]="{'invalid': price?.invalid && (price?.dirty || price?.touched)}" />
+            <div *ngIf="price?.invalid && (price?.dirty || price?.touched)">
+            <div *ngIf="price?.errors?.['required']" class="error-message">Price is required.</div>
+            <div *ngIf="price?.errors?.['pattern']" class="error-message">Price must be a valid number.</div>
+            </div>
+        </div>
+    
+        <div class="form_item">
+            <label for="stock">Number in stock:</label>
+            <input id="stock" formControlName="stock" type="number" [ngClass]="{'invalid': stock?.invalid && (stock?.dirty || stock?.touched)}" />
+            <div *ngIf="stock?.invalid && (stock?.dirty || stock?.touched)">
+            <div *ngIf="stock?.errors?.['required']" class="error-message">Stock number is required.</div>
+            <div *ngIf="stock?.errors?.['pattern']" class="error-message">Stock number must be a valid integer.</div>
+            </div>
+        </div>
+    
+        <div class="form_item">
+            <label for="description">Description:</label>
+            <textarea id="description" formControlName="description"></textarea>
+        </div>
+    
+        <button type="submit" [disabled]="editProductForm?.invalid">Submit</button>
+    </form>
+    <div class="product_image_preview">
+        <img [src]="editProductForm?.value?.image" alt="Product Image" />
+    </div>
+</div>
+
+

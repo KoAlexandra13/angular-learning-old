@@ -1,0 +1,21 @@
+.labels_container {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.label_container {
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(131, 159, 252);
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.label_container button {
+    color: white;
+    background-color: rgb(131, 159, 252);
+    cursor: pointer;
+}

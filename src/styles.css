@@ -1,0 +1,49 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+  
+  * {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-color: rgba(131, 159, 252, 0.2);
+  }
+  
+  img, picture, video, canvas, svg {
+    display: block;
+  }
+  
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  #root, #__next {
+    isolation: isolate;
+  }
+
+  button {
+    border: none;
+    padding: 8px 20px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    -webkit-box-shadow: 5px 5px 10px -5px rgba(66, 68, 90, 0.24);
+    -moz-box-shadow: 5px 5px 10px -5px rgba(66, 68, 90, 0.24);
+    box-shadow: 5px 5px 10px -5px rgba(66, 68, 90, 0.24);
+  }

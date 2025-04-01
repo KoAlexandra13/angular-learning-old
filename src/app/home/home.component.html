@@ -1,0 +1,53 @@
+<div class="main_container">
+  <div class="home_page_filters">
+    <app-filters (filtersChanged)="fetchProducts($event)" #filtersComponent></app-filters>
+    
+    <div *ngIf="noProductsFound">No products found</div>
+
+    <div *ngIf="totalProducts > 0">
+      <p>Found {{ totalProducts }} products</p>
+    </div>
+  </div>
+
+  <div class="content_container">
+    <app-filter-labels [filterForm]="filtersComponent.filtersForm" (filtersChanged)="fetchProducts($event)"></app-filter-labels>
+
+    <div class="product_grid">
+      <div *ngFor="let product of products | search: searchQuery" class="home_page_product">
+        <div class="home_page_product_image_container">
+          <a [routerLink]="['/product', product.id]">
+            <img src="{{ product.image }}" alt="Product Image">
+          </a>
+        </div>
+        <h3>{{ product.title }}</h3>
+        <div class="product_actions_container">
+          <div class="product_add_btn">
+            <button *ngIf="getProductCartCount(product.id) === 0" (click)="addToCart(product)">Add To Cart</button>
+            <div *ngIf="getProductCartCount(product.id) > 0" class="product_add_btn_counter_container">
+              <button (click)="removeFromCart(product.id)">-</button>
+                <p class="product_add_btn_counter">{{ getProductCartCount(product.id) }}</p>
+              <button
+                (click)="addToCart(product)"
+                [disabled]="product?.stock === getProductCartCount(product.id)"
+                class="product_increase_count"
+              >+</button>
+            </div>
+          </div>
+          <div class="product_delete_edit_btns" *ngIf="isAuthenticated()">
+            <button (click)="deleteProduct(product.id)" class="product_delete">Delete</button>
+            <button class="product_edit" (click)="editProduct(product.id)">Edit</button>
+          </div>
+        </div>
+        <div class="product_info">
+          <span class="product_rating">
+            <i class="fa fa-star"></i>
+            {{ product.rating.rate }}
+          </span>
+          <p class="product_price">
+            ${{ product?.price }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

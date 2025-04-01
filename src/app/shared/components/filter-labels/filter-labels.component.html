@@ -1,0 +1,11 @@
+
+<div class="labels_container" *ngIf="labels">
+    <div *ngFor="let label of labels | keyvalue" class="label_container">
+        <span>
+            {{ label['value'] }}
+            <button (click)="removeFilterValue(label.key)">
+                <i class="fa fa-times"> </i>
+            </button>
+        </span>
+    </div>
+</div>

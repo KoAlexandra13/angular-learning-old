@@ -1,0 +1,22 @@
+<nav class="navbar">
+    <div class="navbar_left">
+      <i class="fa fa-at"></i>
+      <span class="company_name">Your Company</span>
+      <a href="/" class="header_link">Home</a>
+      <a *ngIf="!isAuthenticated()" href='/auth' class="header_link">Authentication</a>
+    </div>
+    
+    <div class="navbar_right">
+      <a href="/cart" class="header_link">
+        <i class="fa fa-shopping-cart"></i>
+      </a>
+      <div class="search_container">
+        <input type="text" (input)="onSearch($event)" placeholder="Search products...">
+        <i class="fa fa-search"></i>
+      </div>
+      <button *ngIf="isAuthenticated()" (click)="onLogout()" class="logout_btn">
+        <i class="fa fa-sign-in-alt"></i>
+      </button>
+    </div>
+  </nav>
+  
