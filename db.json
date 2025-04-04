@@ -123,12 +123,6 @@
   ],
   "cart": [
     {
-      "id": "3",
-      "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
-      "count": 1,
-      "price": 286
-    },
-    {
       "id": "1",
       "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
       "count": 4,
@@ -139,12 +133,6 @@
       "title": "Parfums de Marly Herod Eau de Parfum, 125ml",
       "count": 1,
       "price": 198
-    },
-    {
-      "id": "2",
-      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
-      "count": 1,
-      "price": 287
     },
     {
       "id": "5",

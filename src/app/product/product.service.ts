@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductFilter } from '../../shared/models/filter.module';
-import { Product, ProductWithReviews } from '../../shared/models/product.model';
-import { Review } from '../../shared/models/review.model';
+import { ProductFilter } from '../shared/models/filter.module';
+import { Product, ProductWithReviews } from '../shared/models/product.model';
+import { Review } from '../shared/models/review.model';
+import { ProductHttpService } from './product-http.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/products';
-  private reviewsUrl = 'http://localhost:3000/reviews';
-
-  constructor(private http: HttpClient) {}
+  constructor(private productHttpService: ProductHttpService) {}
   
   getProducts(filters: ProductFilter = {}): Observable<ProductWithReviews[]> {
     let params = new HttpParams();
@@ -24,22 +22,22 @@ export class ProductService {
       params = params.set('_embed', 'reviews');
     }
 
-    return this.http.get<ProductWithReviews[]>(this.apiUrl, { params });
+    return this.productHttpService.fetchProducts(params);
   }
 
   deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.productHttpService.deleteProduct(id);
   }
 
   getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+    return this.productHttpService.fetchProductById(id);
   }
 
   getReviewsByProductId(productId: string): Observable<Review[]> {
-    return this.http.get<Review[]>(`${this.reviewsUrl}/?productId=${productId}`);
+    return this.productHttpService.fetchReviewsByProductId(productId);
   }
 
   updateProduct(id: string, product: Product): Observable<Product> {
-    return this.http.patch<Product>(`${this.apiUrl}/${id}`, product);
+    return this.productHttpService.updateProduct(id, product);
   }
 }

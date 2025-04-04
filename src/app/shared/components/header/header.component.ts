@@ -1,19 +1,17 @@
 import { Component } from "@angular/core";
-import { SearchService } from "../../../core/services/search.service";
-import { AuthService } from "../../../core/services/auth.service";
+import { HeaderSearchService } from "./header.service";
+import { AuthService } from "../../../auth/auth.service";
 import { Router } from "@angular/router";
-import { CommonModule } from "@angular/common";
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
-    imports: [CommonModule],
-    standalone: true,
+    standalone: false,
 })
 export class HeaderComponent {
     constructor(
-        private searchService: SearchService,
+        private searchService: HeaderSearchService,
         private authService: AuthService,
         private router: Router,
     ) {}

@@ -1,30 +1,34 @@
-import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
+import { Directive, Input, ElementRef, OnChanges } from '@angular/core';
 
 @Directive({
-  selector: '[appAvailability]'
+  selector: '[appAvailability]',
+  standalone: false,
 })
 export class AvailabilityDirective implements OnChanges {
   @Input() stock = 0;
 
   constructor(private el: ElementRef) {}
 
-  ngOnChanges(): void {
-    let stockText = '';
-    let color = '';
+  ngOnChanges() {
+    this.updateAvailabilityText();
+  }
+
+  private updateAvailabilityText() {
+    let availabilityText = '';
+    let className = '';
 
     if (this.stock > 10) {
-      stockText = 'In Stock';
-      color = 'green';
+      availabilityText = 'In Stock';
+      className = 'in-stock';
     } else if (this.stock > 0) {
-      stockText = 'Almost Sold Out';
-      color = 'orange';
+      availabilityText = `Only ${this.stock} left!`;
+      className = 'low-stock';
     } else {
-      stockText = 'Out of Stock';
-      color = 'red';
+      availabilityText = 'Out of Stock';
+      className = 'out-of-stock';
     }
 
-    this.el.nativeElement.textContent = stockText;
-    this.el.nativeElement.style.color = color;
-    this.el.nativeElement.style.fontWeight = 'bold';
+    this.el.nativeElement.textContent = availabilityText;
+    this.el.nativeElement.className = className;
   }
 }

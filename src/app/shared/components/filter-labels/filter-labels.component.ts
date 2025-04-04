@@ -1,16 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductFilter } from '../../models/filter.module';
-import { CommonModule } from '@angular/common';
 import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-labels',
   templateUrl: './filter-labels.component.html',
   styleUrls: ['./filter-labels.component.css'],
-  imports: [
-    CommonModule,
-  ],
+  standalone: false,
 })
 export class FilterLabelsComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<ProductFilter>();

@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../core/services/cart.service';
+import { CartService } from './cart.service';
 import { Cart } from '../shared/models/cart.model';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ProductService } from '../core/services/product.service';
+import { ProductService } from '../product/product.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  standalone: true,
-  imports: [CommonModule, RouterModule]
+  standalone: false,
 })
 export class CartComponent implements OnInit {
   cartItems: Cart[] = [];
@@ -47,6 +44,11 @@ export class CartComponent implements OnInit {
   }
 
   updateCartItem(productId: string, count: number): void {
+    if (count <= 0) {
+      this.removeFromCart(productId);
+      return;
+    }
+    
     this.cartService.updateCartItem(productId, count).subscribe(() => {
       this.loadCartItems();
     });

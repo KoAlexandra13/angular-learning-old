@@ -4,11 +4,12 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { EditProductComponent } from './product/edit-product/edit-product.component';
 import { CartComponent } from './cart/cart.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 export const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'product/edit/:id', component: EditProductComponent },        
-  { path: 'product/:id', component: ProductDetailsComponent },
+  { path: '', component: HomeComponent },
+  { path: 'auth', component: AuthComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'auth', component: AuthComponent }, 
+  { path: 'product/edit/:id', component: EditProductComponent, canActivate: [AuthGuard] },        
+  { path: 'product/:id', component: ProductDetailsComponent, canActivate: [AuthGuard] },
 ];

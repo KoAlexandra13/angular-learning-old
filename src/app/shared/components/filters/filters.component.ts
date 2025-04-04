@@ -1,18 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductFilter } from '../../models/filter.module';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css'],
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-  ],
+  standalone: false,
 })
 export class FiltersComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<ProductFilter>();
@@ -40,14 +35,25 @@ export class FiltersComponent implements OnInit {
   }
 
   applyFilters() {
-    const filters = this.filtersForm.value;
-
+    const filters = {...this.filtersForm.value};
+  
+    const numericFields = ['priceMin', 'priceMax', 'ratingMin', 'ratingMax'];
+    
+    numericFields.forEach(field => {
+      if (filters[field] !== null && filters[field] !== '' && !isNaN(filters[field])) {
+        const value = Number(filters[field]);
+        if (value < 0) {
+          filters[field] = 0;
+        }
+      }
+    });
+  
     Object.keys(filters).forEach((key) => {
-      if (!filters[key]) {
+      if (!filters[key] && filters[key] !== 0) {
         delete filters[key];
       }
     });
-
+  
     this.router.navigate([], { queryParams: filters });
     this.filtersChanged.emit(filters);
   }

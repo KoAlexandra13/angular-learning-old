@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../core/services/auth.service';
+import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule]
+  standalone: false,
 })
 export class AuthComponent {
   authForm: FormGroup;

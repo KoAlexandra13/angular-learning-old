@@ -1,29 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ProductService } from '../core/services/product.service';
-import { SearchService } from '../core/services/search.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '../product/product.service';
+import { HeaderSearchService } from '../shared/components/header/header.service';
 import { Product, ProductWithReviews } from '../shared/models/product.model';
 import { ProductFilter } from '../shared/models/filter.module';
-import { FiltersComponent } from '../shared/components/filters/filters.component';
-import { FilterLabelsComponent } from '../shared/components/filter-labels/filter-labels.component';
-import { SearchPipe } from '../shared/pipes/search.pipe';
-import { CommonModule } from '@angular/common';
-import { CartService } from '../core/services/cart.service';
+import { CartService } from '../cart/cart.service';
 import { Cart } from '../shared/models/cart.model';
-import { AuthService } from '../core/services/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [
-    FiltersComponent,
-    FilterLabelsComponent,
-    RouterModule,
-    SearchPipe,
-    CommonModule,
-  ],
-  standalone: true,
+  standalone: false,
 })
 export class HomeComponent implements OnInit {
   @Input() searchQuery = '';
@@ -36,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private searchService: SearchService,
+    private searchService: HeaderSearchService,
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,

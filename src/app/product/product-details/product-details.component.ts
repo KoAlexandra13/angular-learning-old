@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../core/services/product.service';
-import { AvailabilityDirective } from '../../shared/directives/availability.directive';
-import { ReviewListComponent } from '../../shared/components/review-list/review-list.component';
+import { ProductService } from '../product.service';
 import { Product } from '../../shared/models/product.model';
 import { Review } from '../../shared/models/review.model';
 import { Cart } from '../../shared/models/cart.model';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
-  imports: [AvailabilityDirective, ReviewListComponent, CommonModule, FormsModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
+  standalone: false,
 })
 
 export class ProductDetailsComponent implements OnInit {
