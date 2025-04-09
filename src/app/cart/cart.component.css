@@ -1,0 +1,99 @@
+.cart_container {
+    max-width: 100%;
+    padding: 100px 40px 40px 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+  
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    height: calc(100vh - 265px);
+}
+  
+thead {
+    background-color: #e6ecff;
+}
+  
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+  
+th {
+    font-weight: bold;
+}
+  
+td {
+    vertical-align: middle;
+}
+  
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #ddd;
+}
+  
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.count_control {
+    min-width: 150px;
+}
+
+button.control_count_btn {
+    background-color: #839ffc;
+    color: white;
+    padding: 8px 15px;
+}
+
+.product_increase_count:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+}
+  
+button.remove_btn {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 8px 15px;
+}
+  
+button.remove_btn:hover {
+    background-color: #ff1a1a;
+}
+  
+.pagination {
+    text-align: center;
+}
+  
+.pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+  
+.pagination button:hover {
+    background-color: #007bffd0;
+}

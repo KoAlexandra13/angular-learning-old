@@ -1,0 +1,59 @@
+<form [formGroup]="filtersForm" (ngSubmit)="applyFilters()">
+    <div>
+      <label for="price" class="bold_label">Price:</label>
+      <div id="price">
+        <input
+          type="number"
+          formControlName="priceMin"
+          placeholder="Min"
+          class="range_input"
+          min="0"
+        />
+        <input
+          type="number"
+          formControlName="priceMax"
+          placeholder="Max"
+          class="range_input"
+          min="0"
+        />
+      </div>
+    </div>
+  
+    <div>
+      <label for="rating" class="bold_label">Rating:</label>
+      <div id="rating">
+        <input
+          type="number"
+          formControlName="ratingMin"
+          placeholder="Min"
+          class="range_input"
+          min="0"
+        />
+        <input
+          type="number"
+          formControlName="ratingMax"
+          placeholder="Max"
+          class="range_input"
+          min="0"
+        />
+      </div>
+    </div>
+  
+    <div>
+      <label for="inStock">
+        <input type="checkbox" formControlName="inStock" id="inStock"/>
+        In Stock
+      </label>
+    </div>
+  
+    <div>
+      <label for="hasReviews">
+        <input type="checkbox" formControlName="hasReviews" id="hasReviews"/>
+        Has Reviews
+      </label>
+    </div>
+  
+    <button type="submit">Apply Filters</button>
+    <button type="button" (click)="clearFilters()">Clear Filters</button>
+  </form>
+  

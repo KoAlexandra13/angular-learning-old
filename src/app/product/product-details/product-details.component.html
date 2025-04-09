@@ -1,0 +1,50 @@
+<div class="product_container">
+  <div class="product_details">
+    <div class="product_image">
+      <img [src]="product?.image" alt="Product Image" *ngIf="product?.image; else noImage">
+    </div>
+
+    <!-- Placeholder if no image -->
+    <ng-template #noImage>
+      <p>No Image Available</p>
+    </ng-template>
+
+    <div class="product_info">
+      <h2 class="product_title">{{ product?.title }}</h2>
+      <p *ngIf="product?.rating">
+        <span class="product_rating">
+          <i class="fa fa-star"></i>
+          {{ product.rating.rate }} ({{ product.rating.count }} reviews)
+        </span>
+      </p>
+
+      <div class="product_availability">
+        <div class="product_add_to_cart_container">
+          <!-- Check if product exists in cart -->
+          <ng-container *ngIf="getCartItem(product?.id) as cartItem; else addToCartButton">
+            <button (click)="removeFromCart()">-</button>
+            <p class="product_counter">{{ cartItem.count }}</p>
+            <button [disabled]="product?.stock === cartItem.count" (click)="addToCart()">+</button>
+          </ng-container>
+
+          <!-- Add to cart button -->
+          <ng-template #addToCartButton>
+            <button [disabled]="product?.stock === 0" (click)="addToCart()">Add To Cart</button>
+          </ng-template>
+        </div>
+
+        <p appAvailability [stock]="product?.stock || 0"></p>
+      </div>
+
+      <p class="product_price">
+        Price: <strong>${{ product?.price }}</strong>
+      </p>
+
+      <p class="description">{{ product?.description }}</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <app-review-list [reviews]="reviews"></app-review-list>
+</div>

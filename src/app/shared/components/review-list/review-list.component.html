@@ -1,0 +1,17 @@
+
+<div class="reviews_section">
+  <h3 class="reviews_section_title">Customer Reviews:</h3>
+
+  <div *ngIf="reviews.length === 0">No reviews yet. Be the first to review!</div>
+
+  <div *ngFor="let review of reviews" class="review">
+    <div class="review_avatar">
+      <i class="fa fa-user"></i>
+    </div>
+    <div class="review_info_container">
+      <p class="review_name"><strong>{{ review.name }}</strong></p>
+      <span class="review_rating"><i class="fa fa-star"></i> {{ review.rate }}</span>
+      <p class="review_text">{{ review.text }}</p>
+    </div>
+  </div>
+</div>
